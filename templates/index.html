@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LearnSphere | Empowering Education</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">LearnSphere</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/courses">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero text-center">
+        <h1>Welcome to LearnSphere</h1>
+        <p>Your gateway to quality online learning</p>
+        <a href="/courses" class="btn btn-outline-light mt-3">Browse Courses</a>
+    </header>
+
+    <section class="container my-5">
+        <h2 class="text-center mb-4">Why Choose Us?</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Expert Tutors</h4>
+                <p>Our instructors are seasoned professionals committed to your success.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>Flexible Learning</h4>
+                <p>Access your courses anytime, anywhere on any device.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>Career-Driven Curriculum</h4>
+                <p>Courses aligned with industry needs and real-world skills.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-primary text-white text-center py-3">
+        <p>&copy; 2025 LearnSphere. All rights reserved.</p>
+    </footer>
+</body>
+</html>

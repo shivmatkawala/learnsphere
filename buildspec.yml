@@ -1,0 +1,42 @@
+version: 0.2
+
+env:
+  variables:
+    DOCKERHUB_REPO: flask-edtech
+    IMAGE_TAG: latest
+  parameter-store:
+    DOCKERHUB_USERNAME: /project/dockerhub/username
+    DOCKERHUB_PASSWORD: /project/dockerhub/password
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - echo Installing Docker...
+      - yum update -y
+      - amazon-linux-extras install docker -y
+      - service docker start
+      - usermod -a -G docker ec2-user
+      - chmod 666 /var/run/docker.sock
+
+  pre_build:
+    commands:
+      - echo Logging in to Docker Hub...
+      - echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
+      - IMAGE_URI=$DOCKERHUB_USERNAME/$DOCKERHUB_REPO:$IMAGE_TAG
+
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t $IMAGE_URI .
+
+  post_build:
+    commands:
+      - echo Pushing Docker image to Docker Hub...
+      - docker push $IMAGE_URI
+      - echo Build complete. Image pushed: $IMAGE_URI
+
+artifacts:
+  files:
+    - '**/*'
