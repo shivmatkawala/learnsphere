@@ -24,13 +24,12 @@ phases:
     commands:
       - echo Logging in to Docker Hub...
       - echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
-      - "export IMAGE_URI=$DOCKERHUB_USERNAME/$DOCKERHUB_REPO:$IMAGE_TAG"
-
+      - IMAGE_URI="$DOCKERHUB_USERNAME/$DOCKERHUB_REPO:$IMAGE_TAG"
+      - echo "Using image URI: $IMAGE_URI"
 
   build:
     commands:
       - echo Building Docker image...
-      - echo "Using image URI: $IMAGE_URI"
       - docker build -t $IMAGE_URI .
 
   post_build:
